@@ -16,7 +16,7 @@ services:
     command: redis-server --requirepass your_redis_password
 
   app:
-    image: nextcloud:latest
+    build: .
     restart: unless-stopped
     ports:
       - 8080:80
@@ -28,12 +28,13 @@ services:
     environment:
       - MYSQL_HOST=db
       - REDIS_HOST_PASSWORD=your_redis_password
+      - PHP_MEMORY_LIMIT=1024M
+      - PHP_UPLOAD_LIMIT=1024M
     env_file:
       - db.env
     depends_on:
       - db
       - redis
-
 volumes:
   db:
   nextcloud:

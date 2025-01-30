@@ -1,3 +1,5 @@
 db.env
 backups/*
 nextcloud/*
+bkp/logs.log
+*.log
